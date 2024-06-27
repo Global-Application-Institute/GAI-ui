@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/gai_logo.jpeg"> <!-- added a favicon -->
+    <title>Register</title>
+    <style>
+        form {
+            width: 350px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+        }
+    
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .required::after {
+            content: " *";
+            color: red;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #00a2e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #008ecf;
+        }
+        .overlap_from_title{
+            text-align: left;
+        }
+        .overlap_from_gender {
+
+        }
+    </style>
+    <script>
+        function extractDOBFromID() {
+            const idNumber = document.getElementById('id-number').value;
+            if (idNumber.length >= 6) {
+                const year = idNumber.substring(0, 2);
+                const month = idNumber.substring(2, 4);
+                const day = idNumber.substring(4, 6);
+                
+                let fullYear = year;
+                
+                if (parseInt(year) < 50) {
+                    fullYear = '20' + year;
+                } else {
+                    fullYear = '19' + year;
+                }
+
+                const dob = `${fullYear}-${month}-${day}`;
+                document.getElementById('dob').value = dob;
+            }
+        }
+    </script>
+</head>
+<body>
+
+<form action="/register" method="post">
+    <p>Don't have an account? Register to Apply </p>
+  
+    <label for="title" class="required">Title:</label>
+    <select id="title" name="title" required>
+        <option value="">Select Title</option>
+        <option value="mr">Mr.</option>
+        <option value="mrs">Mrs.</option>
+        <option value="miss">Miss</option>
+        <option value="ms">Ms.</option>
+        <option value="dr">Dr.</option>
+        <option value="prof">Prof.</option>
+    </select>
+    
+    <label for="initials" class="required">Initials:</label>
+    <input type="text" id="initials" name="initials" required>
+    
+    <label for="first-name" class="required">First Name:</label>
+    <input type="text" id="first-name" name="first-name" required>
+    
+    <label for="second-name" class="required">Second Name:</label>
+    <input type="text" id="second-name" name="second-name" required>
+    
+    <label for="third-name">Third Name (Optional):</label>
+    <input type="text" id="third-name" name="third-name">
+    
+    <label for="surname" class="required">Surname:</label>
+    <input type="text" id="surname" name="surname" required>
+    
+    <label for="gender" class="required">Gender:</label>
+    <select id="gender" name="gender" required>
+        <option value="">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+        <option value="other">Other</option>
+        <option value="prefer-not-to-say">Prefer not to say</option>
+    </select>
+
+
+    <label for="id-number" class="required">ID Type:</label>
+    <input type="text" id="id-number" name="id-type" required oninput="extractDOBFromID()">
+    
+    <label for="dob" class="required">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required>
+    
+    <label for="email" class="required">Email Address:</label>
+    <input type="email" id="email" name="email" required>
+    
+    <label for="mobile-number" class="required">Mobile Number (OTP Send):</label>
+    <input type="tel" id="mobile-number" name="mobile-number" required>
+    
+    <input type="checkbox" id="age-confirmation" name="age-confirmation" required>
+    <label for="age-confirmation">I'm older than 18, or I have permission from my legal guardian to use this website</label>
+    
+    <button type="submit">Register</button>
+
+</form>
+</body>
+</html>
+
+
+
