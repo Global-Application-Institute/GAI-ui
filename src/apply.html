@@ -4,15 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="/images/gai_logo.jpeg"> <!-- added a favicon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <title>Register</title>
     <style>
         body {
-            display: flex;
-            justify-content: center;
-            padding: 20px;
+            margin: 0;
+            font-family: Arial, sans-serif;
             background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
         }
+        .header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #00a2e8;
+            padding: 15px 20px;
+            flex-wrap: wrap;
+            box-sizing: border-box;
+        }
+        .header .logo img {
+            max-height: 70px;
+            padding: 2px; 
+            background-color: white; 
+            border-radius: 5px; 
+        }
+        .header .login-form {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header .login-form .input-wrapper {
+            position: relative;
+            flex: 1;
+            margin-right: 10px;
+            min-width: 200px;
+        }
+        .header .login-form input[type="text"],
+        .header .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box; 
+            transition: border-color 0.3s ease;
+        }
+        .header .login-form input[type="text"]:focus,
+        .header .login-form input[type="password"]:focus {
+            border-color: #00a2e8;
+            outline: none;
+        }
+        .header .login-form .input-wrapper .eye-icon {
+            position: absolute;
+            top: 50%;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+            font-size: 15px;
+        }
+        .header .login-form button {
+            padding: 10px 20px;
+            background-color: #008ecf;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .header .login-form button:hover {
+            background-color: #007bbf;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header .login-form {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+            .header .login-form .input-wrapper,
+            .header .login-form button {
+                width: 90%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+
         .container {
             display: flex;
             justify-content: space-between;
@@ -20,6 +106,7 @@
             width: 100%;
             background-color: #fff;
             border: 1px solid #ccc;
+            margin-top: 20px; /* Added margin to separate header and container */
         }
         .image-container {
             display: flex;
@@ -100,7 +187,7 @@
             transform: translateX(-50%);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 767px) {
             .image-container {
                 display: none;
             }
@@ -133,71 +220,95 @@
                 document.getElementById('dob').value = dob;
             }
         }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+
+    
     </script>
 </head>
 <body>
-
-<div class="container">
-    <div class="image-container">
-        <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Image" title="click to return Home"></a>
+    <div class="header">
+        <div class="logo">
+            <a href="index.html"><img src="../images/gai_logo-removebg-preview.png" alt="Logo"></a> 
+        </div>
+        <div class="login-form">
+            <div class="input-wrapper">
+                <input type="text" id="login-email" placeholder="Email" required>
+            </div>
+            <div class="input-wrapper">
+                <input type="password" id="password" placeholder="Password" required>
+                <i id="eye-icon" class="fas fa-eye eye-icon" onclick="togglePasswordVisibility()"></i>
+            </div>
+            <button type="submit">Log In</button>
+        </div>
     </div>
-    <form action="/register" method="post">
-        <h3>Don't have an account? Register to Apply</h3>
-
-        <div class="form-section">
-            <label for="title" class="required">Title:</label>
-            <select id="title" name="title" required>
-                <option value="">Select Title</option>
-                <option value="mr">Mr.</option>
-                <option value="mrs">Mrs.</option>
-                <option value="miss">Miss</option>
-                <option value="ms">Ms.</option>
-                <option value="dr">Dr.</option>
-                <option value="prof">Prof.</option>
-            </select>
-
-            <label for="initials" class="required">Initials:</label>
-            <input type="text" id="initials" name="initials" required>
-
-            <label for="first-name" class="required">Full Name(s)</label>
-            <input type="text" id="first-name" name="first-name" required>
-
-            <label for="surname" class="required">Surname:</label>
-            <input type="text" id="surname" name="surname" required>
-
-            <label for="gender" class="required">Gender:</label>
-            <select id="gender" name="gender" required>
-                <option value="">Select Gender</option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
-                <option value="other">Other</option>
-            </select>
-
-            <label for="id-number" class="required">ID Type:</label>
-            <input type="text" id="id-number" name="id-type" required oninput="extractDOBFromID()">
-
+    <div class="container">
+        <div class="image-container">
+            <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Image" title="click to return Home"></a>
         </div>
+        <form action="/register" method="post">
+            <h3>Don't have an account? Register to Apply</h3>
+            <div class="form-section">
+                <label for="title" class="required">Title:</label>
+                <select id="title" name="title" required>
+                    <option value="">Select Title</option>
+                    <option value="mr">Mr.</option>
+                    <option value="mrs">Mrs.</option>
+                    <option value="miss">Miss</option>
+                    <option value="ms">Ms.</option>
+                    <option value="dr">Dr.</option>
+                    <option value="prof">Prof.</option>
+                </select>
 
-        <div class="form-section right">
-        
-            <label for="dob" class="required">Date of Birth:</label>
-            <input type="date" id="dob" name="dob" required>
+                <label for="initials" class="required">Initials:</label>
+                <input type="text" id="initials" name="initials" required>
 
-            <label for="email" class="required">Email Address:</label>
-            <input type="email" id="email" name="email" required>
+                <label for="first-name" class="required">Full Name(s):</label>
+                <input type="text" id="first-name" name="first-name" required>
 
-            <label for="mobile-number" class="required">Mobile Number:</label>
-            <input type="tel" id="mobile-number" name="mobile-number" required>
+                <label for="surname" class="required">Surname:</label>
+                <input type="text" id="surname" name="surname" required>
 
-            <button type="submit">Register</button>
-        </div>
+                <label for="gender" class="required">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
 
-        <div class="line"></div>
-    </form>
-</div>
+                <label for="id-number" class="required">ID Type:</label>
+                <input type="text" id="id-number" name="id-type" required oninput="extractDOBFromID()">
+            </div>
 
+            <div class="form-section right">
+                <label for="dob" class="required">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="email" class="required">Email Address:</label>
+                <input type="email" id="register-email" name="email" required>
+
+                <label for="mobile-number" class="required">Mobile Number:</label>
+                <input type="tel" id="mobile-number" name="mobile-number" required>
+
+                <button type="submit">Register</button>
+            </div>
+
+            <div class="line"></div>
+        </form>
+    </div>
 </body>
 </html>
-
-
 
