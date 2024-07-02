@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="/images/gai_logo.jpeg"> <!-- added a favicon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <title>Register</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+        body {
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .header {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: white;
+            padding: 1px 20px;
+            box-sizing: border-box;
+            position: relative;
+        }
+        .header .logo img {
+            background-color: white;
+            width: 7rem;
+            height: 6rem;
+            border-radius: 3rem; 
+            margin-left: -2px;
+        }
+        .header .login-form {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .header .login-form .input-wrapper {
+            position: relative;
+            flex: 1;
+            margin-right: 10px;
+            min-width: 200px;
+        }
+        .header .login-form input[type="text"],
+        .header .login-form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box; 
+            transition: border-color 0.3s ease;
+        }
+        .header .login-form input[type="text"]:focus,
+        .header .login-form input[type="password"]:focus {
+            border-color: #00a2e8;
+            outline: none;
+        }
+        .header .login-form .input-wrapper .eye-icon {
+            position: absolute;
+            top: 20px;
+            right: 10px;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+            font-size: 10px;
+        }
+        .header .login-form button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            background-color: #00a2e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s ease;
+        }
+        .header .login-form button:hover {
+            background-color: #008ecf;
+        }
+        .header .forgot-password {
+            display: block;
+            margin-top: 1px;
+            font-size: 0.5rem;
+            color: black;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        .header .forgot-password:hover {
+            color: #007bbf;
+        }
+        .header .line-horizontal {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background-color: #ccc;
+        }
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: center;
+            }
+            .header .login-form {
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+            }
+            .header .login-form .input-wrapper,
+            .header .login-form button {
+                width: 90%;
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            .header .forgot-password {
+                margin-top: 5px;
+                font-size: 0.85rem;
+            }
+            .header .line-horizontal {
+                display: none;
+            }
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            background-color: #fff;
+            margin-top: 0px;
+            position: relative;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+            background-color: #fff; 
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        form {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 20px;
+            border: none;
+            background-color: #fff;
+            position: relative;
+        }
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 100px;
+        }
+        .form-section.right {
+            margin-right: 2%;
+        }
+        label {
+            display: block;
+            margin-bottom: 1px;
+        }
+        .required::after {
+            font-size: xx-small;
+            content: " *";
+            color: red;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            display: block;
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #00a2e8;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 60px;
+        }
+        button:hover {
+            background-color: #008ecf;
+        }
+        h3 {
+            margin-bottom: 20px;
+            margin-left: 150px;
+        }
+        .line {
+            position: absolute;
+            left: 50%;
+            top: calc(2.5em + 50px);
+            width: 1px;
+            height: calc(100% - 4.5em);
+            background-color: #ccc;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 767px) {
+            .image-container {
+                display: none;
+            }
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .line {
+                display: none;
+            }
+            h3 {
+                margin-left: 0;
+            }
+        }
+    </style>
+    <script>
+        function extractDOBFromID() {
+            const idNumber = document.getElementById('id-number').value;
+            if (idNumber.length >= 6) {
+                const year = idNumber.substring(0, 2);
+                const month = idNumber.substring(2, 4);
+                const day = idNumber.substring(4, 6);
+                
+                let fullYear = year;
+                
+                if (parseInt(year) < 50) {
+                    fullYear = '20' + year;
+                } else {
+                    fullYear = '19' + year;
+                }
+
+                const dob = `${fullYear}-${month}-${day}`;
+                document.getElementById('dob').value = dob;
+            }
+        }
+
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eye-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">
+            <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Logo"></a> 
+        </div>
+        <div class="login-form">
+            <div class="input-wrapper" style="top: -2px;">
+                <input type="text" id="login-email" placeholder="Email" required>
+            </div>
+            <div class="input-wrapper">
+                <input type="password" id="password" placeholder="Password" required>
+                <i id="eye-icon" class="fas fa-eye eye-icon" onclick="togglePasswordVisibility()"></i>
+                <a href="#" class="forgot-password">Forgot Password?</a> <!--Added H2 paragraph-->
+            </div>
+            <button type="submit">Log In</button>
+        </div>
+        <div class="line-horizontal"></div>
+    </div>
+
+        <div class="image-container">
+            <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Image" title="click to return Home"></a>
+        </div>
+        
+        <form action="/register" method="post">
+            <h3>Don't have an account? Register to Apply</h3>
+            <div class="form-section">
+                <label for="title" class="required">Title:</label>
+                <select id="title" name="title" required>
+                    <option value="">Select Title</option>
+                    <option value="mr">Mr.</option>
+                    <option value="mrs">Mrs.</option>
+                    <option value="miss">Miss</option>
+                    <option value="ms">Ms.</option>
+                    <option value="dr">Dr.</option>
+                    <option value="prof">Prof.</option>
+                </select>
+
+                <label for="initials" class="required">Initials:</label>
+                <input type="text" id="initials" name="initials" required>
+
+                <label for="first-name" class="required">Full Name(s):</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="surname" class="required">Surname:</label>
+                <input type="text" id="surname" name="surname" required>
+
+                <label for="gender" class="required">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <label for="id-number" class="required">ID Type:</label>
+                <input type="text" id="id-number" name="id-type" required oninput="extractDOBFromID()">
+            </div>
+
+            <div class="form-section right">
+                <label for="dob" class="required">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="email" class="required">Email Address:</label>
+                <input type="email" id="register-email" name="email" required>
+
+                <label for="mobile-number" class="required">Mobile Number:</label>
+                <input type="tel" id="mobile-number" name="mobile-number" required>
+
+                <button type="submit">Register</button>
+            </div>
+            
+            <div class="line"></div>
+        </form>
+    </div>
+</body>
+</html>
