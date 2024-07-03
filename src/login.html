@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/images/gai_logo.jpeg"> <!-- added a favicon -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="/images/gai_logo.jpeg"> 
     
     <title>Register</title>
     <style>
@@ -129,110 +128,7 @@
             }
         }
 
-        .container {
-            display: flex;
-            justify-content: space-between;
-            max-width: 1200px;
-            width: 100%;
-            background-color: #fff;
-            margin-top: 0px;
-            position: relative;
-        }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            max-width: 400px;
-            width: 100%;
-            background-color: #fff; 
-        }
-        .image-container img {
-            max-width: 100%;
-            height: auto;
-        }
-        form {
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            padding: 20px;
-            border: none;
-            background-color: #fff;
-            position: relative;
-        }
-        .form-section {
-            flex: 1;
-            min-width: 300px;
-            margin-right: 100px;
-        }
-        .form-section.right {
-            margin-right: 2%;
-        }
-        label {
-            display: block;
-            margin-bottom: 1px;
-        }
-        .required::after {
-            font-size: xx-small;
-            content: " *";
-            color: red;
-        }
-        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
-            display: block;
-            width: 100%;
-            padding: 8px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-        input[type="checkbox"] {
-            display: inline-block;
-            width: auto;
-        }
-        button {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            background-color: #00a2e8;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-top: 60px;
-        }
-        button:hover {
-            background-color: #008ecf;
-        }
-        h3 {
-            margin-bottom: 20px;
-            margin-left: 150px;
-        }
-        .line {
-            position: absolute;
-            left: 50%;
-            top: calc(2.5em + 50px);
-            width: 1px;
-            height: calc(100% - 4.5em);
-            background-color: #ccc;
-            transform: translateX(-50%);
-        }
-
-        @media (max-width: 767px) {
-            .image-container {
-                display: none;
-            }
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-            .line {
-                display: none;
-            }
-            h3 {
-                margin-left: 0;
-            }
-        }
+       
     </style>
     <script>
   
@@ -268,63 +164,7 @@
             </div>
             <button type="submit">Log In</button>
         </div>
-        <div class="line-horizontal"></div>
-    </div>
-
-        <div class="image-container">
-            <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Image" title="click to return Home"></a>
-        </div>
-        
-        <form action="/register" method="post">
-            <h3>Don't have an account? Register to Apply</h3>
-            <div class="form-section">
-                <label for="title" class="required">Title:</label>
-                <select id="title" name="title" required>
-                    <option value="">Select Title</option>
-                    <option value="mr">Mr.</option>
-                    <option value="mrs">Mrs.</option>
-                    <option value="miss">Miss</option>
-                    <option value="ms">Ms.</option>
-                    <option value="dr">Dr.</option>
-                    <option value="prof">Prof.</option>
-                </select>
-
-                <label for="initials" class="required">Initials:</label>
-                <input type="text" id="initials" name="initials" required>
-
-                <label for="first-name" class="required">Full Name(s):</label>
-                <input type="text" id="first-name" name="first-name" required>
-
-                <label for="surname" class="required">Surname:</label>
-                <input type="text" id="surname" name="surname" required>
-
-                <label for="gender" class="required">Gender:</label>
-                <select id="gender" name="gender" required>
-                    <option value="">Select Gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
-                    <option value="other">Other</option>
-                </select>
-
-                <label for="id-number" class="required">ID Type:</label>
-                <input type="text" id="id-number" name="id-type" required oninput="extractDOBFromID()">
-            </div>
-
-            <div class="form-section right">
-                <label for="dob" class="required">Date of Birth:</label>
-                <input type="date" id="dob" name="dob" required>
-
-                <label for="email" class="required">Email Address:</label>
-                <input type="email" id="register-email" name="email" required>
-
-                <label for="mobile-number" class="required">Mobile Number:</label>
-                <input type="tel" id="mobile-number" name="mobile-number" required>
-
-                <button type="submit">Register</button>
-            </div>
-            
-            <div class="line"></div>
-        </form>
+       
     </div>
 </body>
 </html>
