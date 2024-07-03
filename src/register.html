@@ -131,40 +131,32 @@
             align-items: center;
         }
         .flag-select select {
-            margin-left: 1px;
-            padding-right: 10px; /* Adjust padding for flag icon */
+            margin-left: 5px;
+            padding-right: 25px; /* Adjust padding for flag icon */
             background-repeat: no-repeat;
             background-position: right center;
             -webkit-appearance: none;
             -moz-appearance: none;
             appearance: none;
+            width: 150px;
         }
         .flag-select option {
-            padding-right: 10px; /* Adjust padding for flag icon */
+            padding-right: 25px; /* Adjust padding for flag icon */
             background-repeat: no-repeat;
             background-position: right center;
         }
+        .flag-select input[type="tel"] {
+            display: block;
+            width: calc(100% - 5px); 
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+}
     </style>
     <script>
-        function extractDOBFromID() {
-    const idNumber = document.getElementById('id-number').value;
-    if (idNumber.length >= 6) {
-        const year = idNumber.substring(0, 2);
-        const month = idNumber.substring(2, 4);
-        const day = idNumber.substring(4, 6);
-        
-        let fullYear = year;
-        
-        if (parseInt(year) < 50) {
-            fullYear = '20' + year;
-        } else {
-            fullYear = '19' + year;
-        }
 
-        const dob = `${fullYear}-${month}-${day}`;
-        document.getElementById('dob').value = dob;
-    }
-}
 function updateFlag(selectElement) {
     const flagCode = selectElement.selectedOptions[0].dataset.flag;
     const flagUrl = `https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/${flagCode}.svg`;
@@ -229,8 +221,6 @@ function updateFlag(selectElement) {
                     <option value="other">Other</option>
                 </select>
 
-                <label for="id-number" class="required">ID Type:</label>
-                <input type="text" id="id-number" name="id-type" required oninput="extractDOBFromID()">
             </div>
 
             <div class="form-section right">
@@ -240,7 +230,7 @@ function updateFlag(selectElement) {
                 <label for="email" class="required">Email Address:</label>
                 <input type="email" id="register-email" name="email" required>
 
-                <label for="phone">Phone Number:</label>
+                <label for="phone" >Phone Number:</label>
                 <div class="flag-select">
                     <select id="phone-country-code" name="phone-country-code" onchange="updateFlag(this)">
                         <option value="+27" data-flag="za">+27</option>
@@ -256,7 +246,7 @@ function updateFlag(selectElement) {
                         <option value="+86" data-flag="cn">+86</option>
                         <!-- Add more options as needed -->
                     </select>
-                    <input type="tel" id="phone" name="phone">
+                    <input type="tel" id="phone" name="phone" style="width: 183px;">
                 </div>
 
                 <label for="alt-phone">Alternative Phone Number:</label>
@@ -275,7 +265,7 @@ function updateFlag(selectElement) {
                         <option value="+86" data-flag="cn">+86</option>
                         <!-- Add more options as needed -->
                     </select>
-                    <input type="tel" id="alt-phone" name="alt-phone">
+                    <input type="tel" id="alt-phone" name="alt-phone" style="width: 183px;">
                 </div>
 
                 <label for="nationality">Nationality:</label>
