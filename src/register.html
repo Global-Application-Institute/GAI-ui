@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/images/gai_logo.jpeg"> <!-- added a favicon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
     <title>Register</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
@@ -19,116 +18,7 @@
             align-items: center;
             padding: 20px;
         }
-        .header {
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: white;
-            padding: 1px 20px;
-            box-sizing: border-box;
-            position: relative;
-        }
-        .header .logo img {
-            background-color: white;
-            width: 7rem;
-            height: 6rem;
-            border-radius: 3rem; 
-            margin-left: -2px;
-        }
-        .header .login-form {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .header .login-form .input-wrapper {
-            position: relative;
-            flex: 1;
-            margin-right: 10px;
-            min-width: 200px;
-        }
-        .header .login-form input[type="text"],
-        .header .login-form input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box; 
-            transition: border-color 0.3s ease;
-        }
-        .header .login-form input[type="text"]:focus,
-        .header .login-form input[type="password"]:focus {
-            border-color: #00a2e8;
-            outline: none;
-        }
-        .header .login-form .input-wrapper .eye-icon {
-            position: absolute;
-            top: 20px;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #aaa;
-            font-size: 10px;
-        }
-        .header .login-form button {
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #00a2e8;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-        .header .login-form button:hover {
-            background-color: #008ecf;
-        }
-        .header .forgot-password {
-            display: block;
-            margin-top: 1px;
-            font-size: 0.5rem;
-            color: black;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .header .forgot-password:hover {
-            color: #007bbf;
-        }
-        .header .line-horizontal {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: #ccc;
-        }
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: center;
-            }
-            .header .login-form {
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-            }
-            .header .login-form .input-wrapper,
-            .header .login-form button {
-                width: 90%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            .header .forgot-password {
-                margin-top: 5px;
-                font-size: 0.85rem;
-            }
-            .header .line-horizontal {
-                display: none;
-            }
-        }
-
+        
         .container {
             display: flex;
             justify-content: space-between;
@@ -164,14 +54,14 @@
         .form-section {
             flex: 1;
             min-width: 300px;
-            margin-right: 100px;
+            margin-right: 50px;
         }
         .form-section.right {
-            margin-right: 2%;
+            margin-right: 0;
         }
         label {
             display: block;
-            margin-bottom: 1px;
+            margin-bottom: 8px; 
         }
         .required::after {
             font-size: xx-small;
@@ -180,11 +70,12 @@
         }
         input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
             display: block;
-            width: 100%;
+            width: calc(100% - 18px); 
             padding: 8px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 4px;
+            box-sizing: border-box;
         }
         input[type="checkbox"] {
             display: inline-block;
@@ -213,7 +104,7 @@
             left: 50%;
             top: calc(2.5em + 50px);
             width: 1px;
-            height: calc(100% - 4.5em);
+            height: calc(80% - 4.5em);
             background-color: #ccc;
             transform: translateX(-50%);
         }
@@ -233,61 +124,74 @@
                 margin-left: 0;
             }
         }
+
+        .flag-select {
+            display: flex;
+            align-items: center;
+        }
+        .flag-select select {
+            margin-left: 1px;
+            padding-right: 10px; /* Adjust padding for flag icon */
+            background-repeat: no-repeat;
+            background-position: right center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .flag-select option {
+            padding-right: 10px; /* Adjust padding for flag icon */
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
     </style>
     <script>
         function extractDOBFromID() {
-            const idNumber = document.getElementById('id-number').value;
-            if (idNumber.length >= 6) {
-                const year = idNumber.substring(0, 2);
-                const month = idNumber.substring(2, 4);
-                const day = idNumber.substring(4, 6);
-                
-                let fullYear = year;
-                
-                if (parseInt(year) < 50) {
-                    fullYear = '20' + year;
-                } else {
-                    fullYear = '19' + year;
-                }
-
-                const dob = `${fullYear}-${month}-${day}`;
-                document.getElementById('dob').value = dob;
-            }
+    const idNumber = document.getElementById('id-number').value;
+    if (idNumber.length >= 6) {
+        const year = idNumber.substring(0, 2);
+        const month = idNumber.substring(2, 4);
+        const day = idNumber.substring(4, 6);
+        
+        let fullYear = year;
+        
+        if (parseInt(year) < 50) {
+            fullYear = '20' + year;
+        } else {
+            fullYear = '19' + year;
         }
 
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eye-icon');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
-            }
-        }
+        const dob = `${fullYear}-${month}-${day}`;
+        document.getElementById('dob').value = dob;
+    }
+}
+function updateFlag(selectElement) {
+    const flagCode = selectElement.selectedOptions[0].dataset.flag;
+    const flagUrl = `https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/${flagCode}.svg`;
+    selectElement.style.backgroundImage = `url(${flagUrl})`;
+    selectElement.style.backgroundRepeat = 'no-repeat';
+    selectElement.style.backgroundPosition = 'right center';
+}
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFlag(document.getElementById('phone-country-code'));
+            updateFlag(document.getElementById('alt-phone-country-code'));
+            
+            document.getElementById('phone-country-code').addEventListener('change', function() {
+                updateFlag(this);
+            });
+
+            document.getElementById('alt-phone-country-code').addEventListener('change', function() {
+                updateFlag(this);
+            });
+        });
+
+
+        
     </script>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Logo"></a> 
-        </div>
-        <div class="login-form">
-            <div class="input-wrapper" style="top: -2px;">
-                <input type="text" id="login-email" placeholder="Email" required>
-            </div>
-            <div class="input-wrapper">
-                <input type="password" id="password" placeholder="Password" required>
-                <i id="eye-icon" class="fas fa-eye eye-icon" onclick="togglePasswordVisibility()"></i>
-                <a href="#" class="forgot-password"><h2>Forgot Password?</h2></a> <!--Added H2-->
-            </div>
-            <button type="submit">Log In</button>
-        </div>
-        <div class="line-horizontal"></div>
-    </div>
+    
     <div class="container">
         <div class="image-container">
             <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Image" title="click to return Home"></a>
@@ -335,13 +239,62 @@
                 <label for="email" class="required">Email Address:</label>
                 <input type="email" id="register-email" name="email" required>
 
-                <label for="mobile-number" class="required">Mobile Number:</label>
-                <input type="tel" id="mobile-number" name="mobile-number" required>
+                <label for="phone">Phone Number:</label>
+                <div class="flag-select">
+                    <select id="phone-country-code" name="phone-country-code" onchange="updateFlag(this)">
+                        <option value="+27" data-flag="za">+27</option>
+                        <option value="+1" data-flag="us">+1</option>
+                        <option value="+44" data-flag="gb">+44</option>
+                        <option value="+91" data-flag="in">+91</option>
+                        <option value="+61" data-flag="au">+61</option>
+                        <option value="+81" data-flag="jp">+81</option>
+                        <option value="+49" data-flag="de">+49</option>
+                        <option value="+33" data-flag="fr">+33</option>
+                        <option value="+39" data-flag="it">+39</option>
+                        <option value="+55" data-flag="br">+55</option>
+                        <option value="+86" data-flag="cn">+86</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <input type="tel" id="phone" name="phone">
+                </div>
 
-                <button type="submit">Register</button>
+                <label for="alt-phone">Alternative Phone Number:</label>
+                <div class="flag-select">
+                    <select id="alt-phone-country-code" name="alt-phone-country-code" onchange="updateFlag(this)">
+                        <option value="+27" data-flag="za">+27</option>
+                        <option value="+1" data-flag="us">+1</option>
+                        <option value="+44" data-flag="gb">+44</option>
+                        <option value="+91" data-flag="in">+91</option>
+                        <option value="+61" data-flag="au">+61</option>
+                        <option value="+81" data-flag="jp">+81</option>
+                        <option value="+49" data-flag="de">+49</option>
+                        <option value="+33" data-flag="fr">+33</option>
+                        <option value="+39" data-flag="it">+39</option>
+                        <option value="+55" data-flag="br">+55</option>
+                        <option value="+86" data-flag="cn">+86</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <input type="tel" id="alt-phone" name="alt-phone">
+                </div>
+
+                <label for="nationality">Nationality:</label>
+                <select id="nationality" name="nationality" required>
+                    <option value="south-africa">South Africa</option>
+                    <option value="united-states">United States</option>
+                    <option value="united-kingdom">United Kingdom</option>
+                    <option value="india">India</option>
+                    <option value="australia">Australia</option>
+                    <option value="japan">Japan</option>
+                    <option value="germany">Germany</option>
+                    <option value="france">France</option>
+                    <option value="italy">Italy</option>
+                    <option value="brazil">Brazil</option>
+                    <option value="china">China</option>
+                    <!-- Add more nationality options here -->
+                </select>
             </div>
-            
             <div class="line"></div>
+            <button type="submit">Register</button>
         </form>
     </div>
 </body>

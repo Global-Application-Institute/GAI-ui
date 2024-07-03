@@ -235,25 +235,7 @@
         }
     </style>
     <script>
-        function extractDOBFromID() {
-            const idNumber = document.getElementById('id-number').value;
-            if (idNumber.length >= 6) {
-                const year = idNumber.substring(0, 2);
-                const month = idNumber.substring(2, 4);
-                const day = idNumber.substring(4, 6);
-                
-                let fullYear = year;
-                
-                if (parseInt(year) < 50) {
-                    fullYear = '20' + year;
-                } else {
-                    fullYear = '19' + year;
-                }
-
-                const dob = `${fullYear}-${month}-${day}`;
-                document.getElementById('dob').value = dob;
-            }
-        }
+  
 
         function togglePasswordVisibility() {
             const passwordInput = document.getElementById('password');
