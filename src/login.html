@@ -2,169 +2,174 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="/images/gai_logo.jpeg"> 
-    
-    <title>Register</title>
+    <title>Login</title>
     <style>
-        @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
-        body {
-            margin: 0;
-            font-family: 'Roboto Condensed', sans-serif;
-            font-size: 1rem;
-            background-color: #f9f9f9;
+     
+     @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+        
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Roboto Condensed',sans-serif;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f9f9f9;
+}
+.login-box{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 440px;
+    height: 480px;
+    padding: 30px;
+}
+.login-header{
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+.login-header header{
+    color: #333;
+    font-size: 30px;
+    font-weight: 600;
+}
+.input-box .input-field{
+    width: 100%;
+    height: 60px;
+    font-size: 17px;
+    padding: 0 25px;
+    margin-bottom: 15px;
+    border-radius: 30px;
+    border: black;
+    box-shadow: 0px 2px 5px 1px #00a2e8;
+    outline: none;
+    transition: .3s;
+}
+::placeholder{
+    font-weight: 500;
+    color: #222;
+}
+.input-field:focus{
+    width: 105%;
+}
+.forgot{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+section{
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #555;
+}
+#check{
+    margin-right: 10px;
+}
+a{
+    text-decoration: none;
+}
+a:hover{
+    text-decoration: underline;
+}
+section a{
+    color: #555;
+}
+.input-submit{
+    position: relative;
+}
+.submit-btn{
+    width: 100%;
+    height: 60px;
+    background:#00a2e8;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .3s;
+}
+.input-submit label{
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    color: #fff;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+.submit-btn:hover{
+    background: #008ecf;
+    transform: scale(1.05,1);
+}
+.register{
+    text-align: center;
+    font-size: 15px;
+    margin-top: 20px;
+}
+.register a{
+    color: #000;
+    font-weight: 600;
+}
+
+.image-container {
             display: flex;
-            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            padding: 20px;
-        }
-        .header {
+            max-width: 400px;
             width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background-color: white;
-            padding: 1px 20px;
-            box-sizing: border-box;
-            position: relative;
+            background-color: #fff; 
+            margin-right: 200px;
         }
-        .header .logo img {
-            background-color: white;
-            width: 7rem;
-            height: 6rem;
-            border-radius: 3rem; 
-            margin-left: -2px;
+        .image-container img {
+            max-width: 100%;
+            height: auto;
         }
-        .header .login-form {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .header .login-form .input-wrapper {
-            position: relative;
-            flex: 1;
-            margin-right: 10px;
-            min-width: 200px;
-        }
-        .header .login-form input[type="text"],
-        .header .login-form input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box; 
-            transition: border-color 0.3s ease;
-        }
-        .header .login-form input[type="text"]:focus,
-        .header .login-form input[type="password"]:focus {
-            border-color: #00a2e8;
-            outline: none;
-        }
-        .header .login-form .input-wrapper .eye-icon {
-            position: absolute;
-            top: 20px;
-            right: 10px;
-            transform: translateY(-50%);
-            cursor: pointer;
-            color: #aaa;
-            font-size: 10px;
-        }
-        .header .login-form button {
-            padding: 10px 20px;
-            margin-top: 10px;
-            background-color: #00a2e8;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s ease;
-        }
-        .header .login-form button:hover {
-            background-color: #008ecf;
-        }
-        .header .forgot-password {
-            display: block;
-            margin-top: 1px;
-            font-size: 0.5rem;
-            color: black;
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        .header .forgot-password:hover {
-            color: #007bbf;
-        }
-        .header .line-horizontal {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background-color: #ccc;
-        }
-        @media (max-width: 768px) {
-            .header {
-                flex-direction: column;
-                align-items: center;
-            }
-            .header .login-form {
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-            }
-            .header .login-form .input-wrapper,
-            .header .login-form button {
-                width: 90%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-            .header .forgot-password {
-                margin-top: 5px;
-                font-size: 0.85rem;
-            }
-            .header .line-horizontal {
+
+        @media (max-width: 767px) {
+            .image-container {
                 display: none;
             }
-        }
-
-       
-    </style>
-    <script>
-  
-
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.getElementById('eye-icon');
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                eyeIcon.classList.remove('fa-eye');
-                eyeIcon.classList.add('fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                eyeIcon.classList.remove('fa-eye-slash');
-                eyeIcon.classList.add('fa-eye');
+            .container {
+                flex-direction: column;
+                align-items: center;
             }
         }
-    </script>
+
+    </style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo">
-            <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Logo"></a> 
+
+    <div class="image-container">
+        <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Image" title="click to return Home"></a>
+    </div>
+    <div class="login-box">
+        <div class="login-header">
+            <header>Login</header>
         </div>
-        <div class="login-form">
-            <div class="input-wrapper" style="top: -2px;">
-                <input type="text" id="login-email" placeholder="Email" required>
-            </div>
-            <div class="input-wrapper">
-                <input type="password" id="password" placeholder="Password" required>
-                <i id="eye-icon" class="fas fa-eye eye-icon" onclick="togglePasswordVisibility()"></i>
-                <a href="#" class="forgot-password">Forgot Password?</a> <!--Added H2 paragraph-->
-            </div>
-            <button type="submit">Log In</button>
+        <div class="input-box">
+            <input type="text" class="input-field" placeholder="Email" autocomplete="off" required>
         </div>
-       
+        <div class="input-box">
+            <input type="password" class="input-field" placeholder="Password" autocomplete="off" required>
+        </div>
+        <div class="forgot">
+            <section>
+                <a href="#">Forgot password</a>
+            </section>
+        </div>
+        <div class="input-submit">
+            <button class="submit-btn" id="submit"></button>
+            <label for="submit">Login</label>
+        </div>
+        <div class="register">
+            <p>Don't have account? <a href="register.html"><b>Register</b></a></p>
+        </div>
     </div>
 </body>
 </html>
