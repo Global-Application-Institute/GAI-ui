@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form</title>
+   
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+            padding: 20px;
+        }
+
+        legend {
+            font-weight: bold;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #5cb85c;
+            color: #fff;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            background-color: #4cae4c;
+        }
+
+        .form-buttons {
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const form = document.getElementById('applicationForm');
+            const email = form['email'].value;
+            const verifyEmail = form['verifyEmail'].value;
+
+            if (email !== verifyEmail) {
+                alert('Email addresses do not match');
+                return false;
+            }
+
+            return true;
+        }
+
+        function goBack() {
+            window.history.back();
+        }
+
+        function toggleIDField() {
+            const saCitizen = document.getElementById('saCitizen').value;
+            const saIDField = document.getElementById('saIDField');
+            const passportField = document.getElementById('passportField');
+
+            if (saCitizen === 'yes') {
+                saIDField.classList.remove('hidden');
+                passportField.classList.add('hidden');
+            } else if (saCitizen === 'no') {
+                saIDField.classList.add('hidden');
+                passportField.classList.remove('hidden');
+            } else {
+                saIDField.classList.add('hidden');
+                passportField.classList.add('hidden');
+            }
+        }
+
+        function toggleConditionField() {
+            const disability = document.getElementById('disability').value;
+            const conditionField = document.getElementById('conditionField');
+
+            if (disability === 'yes') {
+                conditionField.classList.remove('hidden');
+            } else {
+                conditionField.classList.add('hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <form id="applicationForm" onsubmit="return validateForm()">
+            <fieldset>
+                <legend>Biographical details</legend>
+                <div class="form-group">
+                    <label for="saCitizen">Are you a SA Citizen in possession of a valid SA ID/Birth Certificate?</label>
+                    <select id="saCitizen" name="saCitizen" required onchange="toggleIDField()">
+                        <option value="">Please select</option>
+                        <option value="yes">Yes</option>
+                        <option value="no">No</option>
+                    </select>
+                </div>
+                <div class="form-group hidden" id="saIDField">
+                    <label for="saID">SA ID Number</label>
+                    <input type="text" id="saID" name="saID">
+                </div>
+                <div class="form-group hidden" id="passportField">
+                    <label for="passport">Passport Number</label>
+                    <input type="text" id="passport" name="passport">
+                </div>
+            </fieldset>
+            <fieldset>
+               <legend>Personal Information</legend>
+               <div class="form-group">
+                   <label for="gender">Gender</label>
+                   <select id="gender" name="gender" required>
+                       <option value="">Please select</option>
+                       <option value="male">Male</option>
+                       <option value="female">Female</option>
+                       <option value="other">Other</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                   <label for="dob">Date of Birth</label>
+                   <input type="date" id="dob" name="dob" required>
+               </div>
+               <div class="form-group">
+                   <label for="title">Title</label>
+                   <select id="title" name="title" required>
+                       <option value="">Please select</option>
+                       <option value="mr">Mr.</option>
+                       <option value="mrs">Mrs.</option>
+                       <option value="ms">Ms.</option>
+                       <option value="dr">Dr.</option>
+                       <option value="prof">Prof.</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                   <label for="initials">Initials</label>
+                   <input type="text" id="initials" name="initials" required>
+               </div>
+               <div class="form-group">
+                   <label for="firstName">Full Name(S)</label>
+                   <input type="text" id="firstName" name="firstName" required>
+               </div>
+               <div class="form-group">
+                   <label for="surname">Surname</label>
+                   <input type="text" id="surname" name="surname" required>
+               </div>
+              
+       
+               <div class="form-group">
+                   <label for="maritalStatus">Marital Status</label>
+                   <select id="maritalStatus" name="maritalStatus" required>
+                       <option value="">Please select</option>
+                       <option value="single">Single</option>
+                       <option value="married">Married</option>
+                       <option value="divorced">Divorced</option>
+                       <option value="widowed">Widowed</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                   <label for="homeLanguage">Home Language</label>
+                   <select id="homeLanguage" name="homeLanguage" required>
+                       <option value="">Please select</option>
+                       <option value="english">English</option>
+                       <option value="afrikaans">Afrikaans</option>
+                       <option value="zulu">Zulu</option>
+                       <option value="setswana">Setswana</option>
+                       <option value="sesotho">Sesotho</option>
+                       <option value="sepedi">Sepedi</option>
+                       <option value="swati">Swati</option>
+                       <option value="tsonga">Tsonga</option>
+                       <option value="isindebele">Isindebele</option>
+                       <option value="tshivenda">Tshivenda</option>
+                       <option value="other">Other</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                  <label for="homeLanguage">other Languages</label>
+                  <select id="homeLanguage" name="homeLanguage" required>
+                      <option value="">Please select</option>
+                      <option value="english">English</option>
+                      <option value="afrikaans">Afrikaans</option>
+                      <option value="isizulu">IsiZulu</option>
+                      <option value="setswana">Setswana</option>
+                      <option value="sesotho">Sesotho</option>
+                      <option value="sepedi">Sepedi</option>
+                      <option value="siswati">Siswati</option>
+                      <option value="xitsonga">Xitsonga</option>
+                      <option value="isindebele">Isindebele</option>
+                      <option value="tshivenda">Tshivenda</option>
+                      <option value="other">Other</option>
+                  </select>
+               </div>
+               <div class="form-group">
+                   <label for="ethnicGroup">Ethnic Group</label>
+                   <select id="ethnicGroup" name="ethnicGroup" required>
+                       <option value="">Please select</option>
+                       <option value="african">African</option>
+                       <option value="white">White</option>
+                       <option value="coloured">Coloured</option>
+                       <option value="indian">Indian</option>
+                       <option value="asian">Asian</option>
+                   </select>
+                  </div>
+            
+           </fieldset>
+           <fieldset>
+               <legend>Address Information</legend>
+               <div class="form-group">
+                   <label for="streetAddress1">Street Address Line 1 (e.g. Street Name)</label>
+                   <input type="text" id="streetAddress1" name="streetAddress1" required>
+               </div>
+               <div class="form-group">
+                   <label for="streetAddress2">Street Address Line 2 (e.g. Suburb Name)</label>
+                   <input type="text" id="streetAddress2" name="streetAddress2">
+               </div>
+               <div class="form-group">
+                   <label for="streetAddress3">Street Address Line 3 (e.g. Town Name)</label>
+                   <input type="text" id="streetAddress3" name="streetAddress3">
+               </div>
+               <div class="form-group">
+                   <label for="streetAddress4">Street Address Line 4 (e.g. Province Name)</label>
+                   <input type="text" id="streetAddress4" name="streetAddress4">
+               </div>
+               <div class="form-group">
+                   <label for="postalCode">Postal Code</label>
+                   <input type="text" id="postalCode" name="postalCode" required>
+               </div>
+           </fieldset>
+           <fieldset>
+               <legend>Contact Information</legend>
+               <div class="form-group">
+                   <label for="saCellPhone">Do you have a South African Cell Phone Number?</label>
+                   <select id="saCellPhone" name="saCellPhone" required>
+                       <option value="">Please select</option>
+                       <option value="yes">Yes</option>
+                       <option value="no">No</option>
+                   </select>
+               </div>
+               <div class="form-group">
+                   <label for="workPhone">Work Telephone Number</label>
+                   <input type="text" id="workPhone" name="workPhone">
+               </div>
+               <div class="form-group">
+                   <label for="homePhone">Home Telephone Number</label>
+                   <input type="text" id="homePhone" name="homePhone">
+               </div>
+               <div class="form-group">
+                   <label for="email">Email</label>
+                   <input type="email" id="email" name="email" autocomplete="off" required>
+               </div>
+               <div class="form-group">
+                   <label for="verifyEmail">Verify Email</label>
+                   <input type="email" id="verifyEmail" name="verifyEmail"  autocomplete="off" required>
+               </div>
+           </fieldset>
+
+           <fieldset>
+               <legend>Disability Information</legend>
+               <div class="form-group">
+                   <label for="disability">Do you have a disability or impairment?</label>
+                   <select id="disability" name="disability" required onchange="toggleConditionField()">
+                       <option value="">Please select</option>
+                       <option value="yes">Yes</option>
+                       <option value="no">No</option>
+                   </select>
+               </div>
+               <div class="form-group hidden" id="conditionField">
+                   <label for="condition">Please specify the condition</label>
+                   <input type="text" id="condition" name="condition">
+               </div>
+           </fieldset>
+
+            <div class="form-buttons">
+                <button type="button" onclick="goBack()">Back</button>
+                <button type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
+

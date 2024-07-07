@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/css/flag-icon.min.css">
+    <title>Register</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap");
+        body {
+            margin: 0;
+            font-family: 'Roboto Condensed', sans-serif;
+            font-size: 1rem;
+            background-color: #f9f9f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            width: 100%;
+            background-color: #fff;
+            margin-top: 0px;
+            position: relative;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 400px;
+            width: 100%;
+            background-color: #fff; 
+        }
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+        form {
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 20px;
+            border: none;
+            background-color: #fff;
+            position: relative;
+        }
+        .form-section {
+            flex: 1;
+            min-width: 300px;
+            margin-right: 50px;
+        }
+        .form-section.right {
+            margin-right: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px; 
+        }
+        .required::after {
+            font-size: xx-small;
+            content: " *";
+            color: red;
+        }
+        input[type="text"], input[type="email"], input[type="tel"], input[type="date"], select {
+            display: block;
+            width: calc(100% - 18px); 
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input[type="checkbox"] {
+            display: inline-block;
+            width: auto;
+        }
+        button {
+            display: block;
+            width: 50%;
+            padding: 10px;
+            background-color: #00a2e8;
+            color: white;
+            cursor: pointer;
+            margin-top: 60px;
+            margin-left: 200px;
+            height: 60px;
+            border: none;
+            border-radius: 30px;
+            transition: .3s;
+        }
+        button:hover {
+            background-color: #008ecf;
+            transform: scale(1.05,1);
+        }
+        h3 {
+            margin-bottom: 20px;
+            margin-left: 180px;
+        }
+        .line {
+            position: absolute;
+            left: 50%;
+            top: calc(2.5em + 50px);
+            width: 1px;
+            height: calc(80% - 4.5em);
+            background-color: #ccc;
+            transform: translateX(-50%);
+        }
+
+        @media (max-width: 767px) {
+            .image-container {
+                display: none;
+            }
+            .container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .line {
+                display: none;
+            }
+            h3 {
+                margin-left: 0;
+            }
+        }
+
+        .flag-select {
+            display: flex;
+            align-items: center;
+        }
+        .flag-select select {
+            margin-left: 5px;
+            padding-right: 25px; /* Adjust padding for flag icon */
+            background-repeat: no-repeat;
+            background-position: right center;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 150px;
+        }
+        .flag-select option {
+            padding-right: 25px; /* Adjust padding for flag icon */
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+        .flag-select input[type="tel"] {
+            display: block;
+            width: calc(100% - 5px); 
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+}
+    </style>
+    <script>
+
+function updateFlag(selectElement) {
+    const flagCode = selectElement.selectedOptions[0].dataset.flag;
+    const flagUrl = `https://cdnjs.cloudflare.com/ajax/libs/flag-icon-css/3.5.0/flags/4x3/${flagCode}.svg`;
+    selectElement.style.backgroundImage = `url(${flagUrl})`;
+    selectElement.style.backgroundRepeat = 'no-repeat';
+    selectElement.style.backgroundPosition = 'right center';
+}
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateFlag(document.getElementById('phone-country-code'));
+            updateFlag(document.getElementById('alt-phone-country-code'));
+            
+            document.getElementById('phone-country-code').addEventListener('change', function() {
+                updateFlag(this);
+            });
+
+            document.getElementById('alt-phone-country-code').addEventListener('change', function() {
+                updateFlag(this);
+            });
+        });
+
+
+        
+    </script>
+</head>
+<body>
+    
+    <div class="container">
+        <div class="image-container">
+            <a href="index.html"><img src="../images/gai_logo.jpeg" alt="Image" title="click to return Home"></a>
+        </div>
+        
+        <form action="/register" method="post">
+            <h3>Don't have an account? Register to Apply</h3>
+            <div class="form-section">
+                <label for="title" class="required">Title:</label>
+                <select id="title" name="title" required>
+                    <option value="">Select Title</option>
+                    <option value="mr">Mr.</option>
+                    <option value="mrs">Mrs.</option>
+                    <option value="miss">Miss</option>
+                    <option value="ms">Ms.</option>
+                    <option value="dr">Dr.</option>
+                    <option value="prof">Prof.</option>
+                </select>
+
+                <label for="initials" class="required">Initials:</label>
+                <input type="text" id="initials" name="initials" required>
+
+                <label for="first-name" class="required">Full Name(s):</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="surname" class="required">Surname:</label>
+                <input type="text" id="surname" name="surname" required>
+
+                <label for="gender" class="required">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+            </div>
+
+            <div class="form-section right">
+                <label for="dob" class="required">Date of Birth:</label>
+                <input type="date" id="dob" name="dob" required>
+
+                <label for="email" class="required">Email Address:</label>
+                <input type="email" id="register-email" name="email" required>
+
+                <label for="phone" >Phone Number:</label>
+                <div class="flag-select">
+                    <select id="phone-country-code" name="phone-country-code" onchange="updateFlag(this)">
+                        <option value="+27" data-flag="za">+27</option>
+                        <option value="+1" data-flag="us">+1</option>
+                        <option value="+44" data-flag="gb">+44</option>
+                        <option value="+91" data-flag="in">+91</option>
+                        <option value="+61" data-flag="au">+61</option>
+                        <option value="+81" data-flag="jp">+81</option>
+                        <option value="+49" data-flag="de">+49</option>
+                        <option value="+33" data-flag="fr">+33</option>
+                        <option value="+39" data-flag="it">+39</option>
+                        <option value="+55" data-flag="br">+55</option>
+                        <option value="+86" data-flag="cn">+86</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <input type="tel" id="phone" name="phone" style="width: 183px;">
+                </div>
+
+                <label for="alt-phone">Alternative Phone Number:</label>
+                <div class="flag-select">
+                    <select id="alt-phone-country-code" name="alt-phone-country-code" onchange="updateFlag(this)">
+                        <option value="+27" data-flag="za">+27</option>
+                        <option value="+1" data-flag="us">+1</option>
+                        <option value="+44" data-flag="gb">+44</option>
+                        <option value="+91" data-flag="in">+91</option>
+                        <option value="+61" data-flag="au">+61</option>
+                        <option value="+81" data-flag="jp">+81</option>
+                        <option value="+49" data-flag="de">+49</option>
+                        <option value="+33" data-flag="fr">+33</option>
+                        <option value="+39" data-flag="it">+39</option>
+                        <option value="+55" data-flag="br">+55</option>
+                        <option value="+86" data-flag="cn">+86</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                    <input type="tel" id="alt-phone" name="alt-phone" style="width: 183px;">
+                </div>
+
+                <label for="nationality">Nationality:</label>
+                <select id="nationality" name="nationality" required>
+                    <option value="south-africa">South Africa</option>
+                    <option value="united-states">United States</option>
+                    <option value="united-kingdom">United Kingdom</option>
+                    <option value="india">India</option>
+                    <option value="australia">Australia</option>
+                    <option value="japan">Japan</option>
+                    <option value="germany">Germany</option>
+                    <option value="france">France</option>
+                    <option value="italy">Italy</option>
+                    <option value="brazil">Brazil</option>
+                    <option value="china">China</option>
+                    <!-- Add more nationality options here -->
+                </select>
+            </div>
+            <div class="line"></div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+</body>
+</html>
